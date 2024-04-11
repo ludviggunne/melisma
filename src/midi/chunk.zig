@@ -19,7 +19,7 @@ pub const Chunk = union(enum) {
         } = .single,
         ntrks: u16 = 1,
         // TODO: SMPTE utility
-        division: u16 = 96,
+        division: u16 = 256,
     },
     track: struct {
         events: []const MtrkEvent,
