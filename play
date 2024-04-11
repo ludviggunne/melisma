@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 zig build
 ./zig-out/bin/melisma > output.mid
-fluidsynth --audio-driver=alsa -o audio.alsa.device=hw:0 8bitsf.sf2 fibbydib.mid
+fluidsynth --audio-driver=alsa -o audio.alsa.device=hw:0 8bitsf.sf2 output.mid
