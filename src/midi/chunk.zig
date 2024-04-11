@@ -38,7 +38,6 @@ pub const Chunk = union(enum) {
         try writeValue(self, buffer.writer());
         try writer.writeInt(u32, @intCast(buffer.items.len), .big);
         try writer.writeAll(buffer.items);
-        std.debug.print("bufsize: {d}\n", .{buffer.items.len});
     }
 };
 
@@ -64,7 +63,6 @@ fn writeValue(v: anytype, writer: anytype) !void {
         },
         .Int => {
             try writer.writeInt(T, v, .big);
-            std.debug.print("wrote {s} with value {d}\n", .{ @typeName(T), v });
         },
         .Union => |u| {
             if (u.tag_type == null) {
