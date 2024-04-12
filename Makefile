@@ -1,6 +1,7 @@
 
 CC?=gcc
 CFLAGS=$(shell paste -sd " " compile_flags.txt)
+LDFLAGS=-lm
 
 SRC=$(wildcard src/*.c)
 OBJ=$(SRC:src/%.c=build/%.o)
@@ -8,7 +9,7 @@ OBJ=$(SRC:src/%.c=build/%.o)
 .PHONY: clean
 
 build/melisma: $(OBJ)
-	$(CC) $(OBJ) -o $@
+	$(CC) $(LDFLAGS) $(OBJ) -o $@
 
 build/%.o: src/%.c
 	mkdir -p build/

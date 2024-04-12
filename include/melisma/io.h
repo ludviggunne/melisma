@@ -6,5 +6,7 @@
 
 void fprint_u16_be(FILE * f, uint16_t v);
 void fprint_u32_be(FILE * f, uint32_t v);
+void fprint_u16_le(FILE * f, uint16_t v);
+void fprint_u32_le(FILE * f, uint32_t v);
 
 #endif                          /* IO_H */

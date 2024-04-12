@@ -71,6 +71,20 @@ void buf_w_u32_be(struct buffer *buf, uint32_t v)
     buf_putc(buf, v & 255);
 }
 
+void buf_w_u16_le(struct buffer *buf, uint16_t v)
+{
+    buf_putc(buf, v & 255);
+    buf_putc(buf, (v >> 8) & 255);
+}
+
+void buf_w_u32_le(struct buffer *buf, uint32_t v)
+{
+    buf_putc(buf, v & 255);
+    buf_putc(buf, (v >> 8) & 255);
+    buf_putc(buf, (v >> 16) & 255);
+    buf_putc(buf, (v >> 24) & 255);
+}
+
 void buf_reset(struct buffer *buf)
 {
     buf->len = 0;
