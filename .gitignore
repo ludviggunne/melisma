@@ -1,4 +1,3 @@
-zig-out/
-zig-cache/
+build/
 *.mid
 *.sf2
