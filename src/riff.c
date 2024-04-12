@@ -1,5 +1,14 @@
 #include <melisma/riff.h>
 #include <melisma/io.h>
+#include <melisma/int.h>
+#include <melisma/stream_parser.h>
+#include <string.h>
+
+void chunk_from_buf(struct chunk *ck, struct buffer *buf)
+{
+    ck->data = buf->data;
+    ck->size = buf->len;
+}
 
 void chunk_write_buf_be(struct chunk ck, struct buffer *buf)
 {
@@ -65,8 +74,19 @@ void chunk_write_file_le(struct chunk ck, FILE *f)
     fwrite(ck.data, 1, (size_t) ck.size, f);
 }
 
-void chunk_from_buf(struct chunk *ck, struct buffer *buf)
+struct chunk chunk_read_be(void *data)
 {
-    ck->data = buf->data;
-    ck->size = buf->len;
+    struct chunk ck;
+    void *_data = data;
+    ck.fourcc = stream_read_id(&_data);
+    ck.size = stream_read_u32_be(&_data);
+    ck.fcctype = NULL;
+
+    if (strncmp(ck.fourcc, "RIFF", 4) == 0) {
+        ck.size -= 4;
+        ck.fcctype = stream_read_id(&_data);
+    }
+
+    ck.data = _data;
+    return ck;
 }

@@ -2,4 +2,4 @@
 set -ex
 make
 build/melisma > output.mid
-fluidsynth --audio-driver=alsa -o audio.alsa.device=hw:0 8bitsf.sf2 output.mid
+fluidsynth --audio-driver=alsa -o audio.alsa.device=hw:0 CT2MGM.SF2 output.mid

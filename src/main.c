@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <melisma/wav.h>
+#include <melisma/tuning.h>
 
 #define SAMPLE_RATE 44100
 #define FREQUENCY 440
